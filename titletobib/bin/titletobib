@@ -25,29 +25,38 @@ def main():
             @github: https://github.com/devmessias/titletobib
         ''')
     )
+
     parser.add_argument(
-        "--input", "-i",
-        required=True,
+        "--inputfile", "-i",
         type=argparse.FileType("r"),
         help="input file"
     )
     parser.add_argument(
         "--output", "-o",
-        required=True,
         help="bibtex output file")
 
-    args = parser.parse_args()
-    titles = args.input.read().split("\n")
-    titles = filter(lambda title: title != "", titles)
+    args = parser.parse_known_args()
+    inlineTitle = len(args[1]) > 0
+    if inlineTitle:
+        titles = [" ".join(args[1])]
+    else:
+        titles = args[0].inputfile.read()
+        titles = filter(lambda title: title != "", titles.split("\n"))
     bibs = []
-    get_first = True if input("Automatic mode?y(yes)|n(no)") == "y" else False
+    if inlineTitle:
+        get_first = False
+    else:
+        get_first = True if input("Automatic mode?y(yes)|n(no)") == "y" else False
     for title in titles:
         found, bib = get_bib_from_title(title, get_first)
         if found:
             bibs.append(bib)
 
     if len(bibs) > 0:
-        save_output_bibs(bibs, args.output)
+        if inlineTitle:
+            print("\n\n"+bibs[0])
+        else:
+            save_output_bibs(bibs, args[0].output)
 
 
 if __name__ == "__main__":

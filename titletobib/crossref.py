@@ -24,7 +24,7 @@ def get_bib_from_doi(doi):
 def ask_which_is(title, items):
     found = False
     result = {}
-    question = "\tReplace by '{}' article?y(yes)|n(no)|q(quit)"
+    question = "\t It is >>'{}' article?y(yes)|n(no)|q(quit)"
     for item in items:
         w = input(question.format(
             item["title"][0].encode("ascii", "ignore"), title))
