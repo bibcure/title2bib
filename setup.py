@@ -10,7 +10,7 @@ setup(
     packages = find_packages(exclude=["build",]),
     scripts=["titletobib/bin/titletobib"],
     long_description = README_TEXT,
-    install_requires=["request", "future"],
+    install_requires=["requests", "future"],
     include_package_data=True,
     license="GPLv3",
     description="Generate a bibtex given a title",
@@ -26,5 +26,5 @@ setup(
         "Programming Language :: Python",
         "Topic :: Text Processing :: Markup :: LaTeX",
     ],
-    url="https://github.com/devmessias/journalabbrev"
+    url="https://github.com/devmessias/titletobib"
 )

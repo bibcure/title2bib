@@ -1,0 +1,54 @@
+#!/usr/bib/env python
+from __future__ import print_function
+import argparse
+import textwrap
+from builtins import input
+from titletobib.crossref import get_bib_from_title
+
+
+def save_output_bibs(bibs, output_file):
+    with open(output_file, 'w') as bibfile:
+        for bib in bibs:
+            bibfile.write("{}\n".format(bib))
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        prog="titletobib",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        description=textwrap.dedent('''\
+        Convert a list of titles in a bibfile.
+        -----------------------------------------------------
+            @author: Bruno Messias
+            @email: messias.physics@gmail.com
+            @telegram: @bruno_messias
+            @github: https://github.com/devmessias/titletobib
+        ''')
+    )
+    parser.add_argument(
+        "--input", "-i",
+        required=True,
+        type=argparse.FileType("r"),
+        help="input file"
+    )
+    parser.add_argument(
+        "--output", "-o",
+        required=True,
+        help="bibtex output file")
+
+    args = parser.parse_args()
+    titles = args.input.read().split("\n")
+    titles = filter(lambda title: title != "", titles)
+    bibs = []
+    get_first = True if input("Automatic mode?y(yes)|n(no)") == "y" else False
+    for title in titles:
+        found, bib = get_bib_from_title(title, get_first)
+        if found:
+            bibs.append(bib)
+
+    if len(bibs) > 0:
+        save_output_bibs(bibs, args.output)
+
+
+if __name__ == "__main__":
+    main()

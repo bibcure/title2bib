@@ -24,7 +24,7 @@ def get_bib_from_doi(doi):
 def ask_which_is(title, items):
     found = False
     result = {}
-    question = "'{}' is '{}'?y(yes)|n(no)"
+    question = "\tReplace by '{}' article?y(yes)|n(no)|q(quit)"
     for item in items:
         w = input(question.format(
             item["title"][0].encode("ascii", "ignore"), title))
@@ -32,6 +32,8 @@ def ask_which_is(title, items):
         if w == "y":
             found = True
             result = item
+            break
+        if w == "q":
             break
     return found, result
 
@@ -59,6 +61,7 @@ def get_from_title(title, get_first=False):
             found = True
             item = items[0]
         else:
+            print("\nOriginal title: "+title+"\n")
             found, item = ask_which_is(title, items)
     return found, item
 
