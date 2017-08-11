@@ -2,7 +2,8 @@ from __future__ import print_function
 import requests
 from builtins import input
 import difflib
-
+from doitobib.crossref import get_bib_from_doi
+import pdb
 bare_url = "http://api.crossref.org/"
 
 
@@ -12,15 +13,6 @@ def find_cross_info(params):
     return requested
 
 
-def get_bib_from_doi(doi):
-    url = "{}works/{}/transform/application/x-bibtex"
-    url = url.format(bare_url, doi)
-    r = requests.get(url)
-    found = False if r.status_code != 200 else True
-    bib = r.content
-    return found, bib
-
-
 def ask_which_is(title, items):
     found = False
     result = {}
@@ -28,7 +20,6 @@ def ask_which_is(title, items):
     for item in items:
         w = input(question.format(
             item["title"][0].encode("ascii", "ignore"), title))
-        # pdb.set_trace()
         if w == "y":
             found = True
             result = item
@@ -66,14 +57,19 @@ def get_from_title(title, get_first=False):
     return found, item
 
 
-def get_bib_from_title(title, get_first=False):
+def get_bib_from_title(title, get_first=False, abbrev_journal=False):
     found = False
     bib = ""
     found, item = get_from_title(title, get_first)
     if found:
-        doi = item["DOI"]
-        found, bib = get_bib_from_doi(doi)
-    else:
-        found = False
+        if "DOI" in item:
+            doi = item["DOI"]##aqui pode acontecer de realizar a chamada para
+            found, bib = get_bib_from_doi(doi)
+            if "short-container-title" in item:
+                abbreviated_journal = item["short-container-title"][0]##aqui pode acontecer de realizar a chamada para
+
+        #pegar journal contraido e contrair autores
+        # depois fazer um replace no bib com  o nome do journal e o
+        #contraido, ou usar o bibtexparser(ultima melhor)
 
     return found, bib

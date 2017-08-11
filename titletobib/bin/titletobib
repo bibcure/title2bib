@@ -1,5 +1,6 @@
 #!/usr/bib/env python
 from __future__ import print_function
+from builtins import str
 import argparse
 import textwrap
 from builtins import input
@@ -27,7 +28,7 @@ def main():
     )
 
     parser.add_argument(
-        "--inputfile", "-i",
+        "--input", "-i",
         type=argparse.FileType("r"),
         help="input file"
     )
@@ -40,8 +41,8 @@ def main():
     if inlineTitle:
         titles = [" ".join(args[1])]
     else:
-        titles = args[0].inputfile.read()
-        titles = filter(lambda title: title != "", titles.split("\n"))
+        titles = args[0].input.read()
+        titles = [title for title in titles.split("\n") if title != ""]
     bibs = []
     if inlineTitle:
         get_first = False
@@ -54,7 +55,8 @@ def main():
 
     if len(bibs) > 0:
         if inlineTitle:
-            print("\n\n"+bibs[0])
+            print("\n\n")
+            print(bibs[0])
         else:
             save_output_bibs(bibs, args[0].output)
 
