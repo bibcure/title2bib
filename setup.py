@@ -10,13 +10,13 @@ setup(
     packages = find_packages(exclude=["build",]),
     scripts=["titletobib/bin/titletobib"],
     long_description = README_TEXT,
-    install_requires=["requests", "future"],
+    install_requires=["requests", "future", "doitobib", "difflib"],
     include_package_data=True,
     license="GPLv3",
     description="Generate a bibtex given a title",
     author="Bruno Messias",
     author_email="messias.physics@gmail.com",
-    download_url="https://github.com/devmessias/titletobib/archive/0.1.tar.gz",
+    download_url="https://github.com/bibcure/titletobib/archive/0.1.tar.gz",
     keywords=["bibtex", "science","scientific-journals"],
 
     classifiers=[
@@ -26,5 +26,5 @@ setup(
         "Programming Language :: Python",
         "Topic :: Text Processing :: Markup :: LaTeX",
     ],
-    url="https://github.com/devmessias/titletobib"
+    url="https://github.com/bibcure/titletobib"
 )

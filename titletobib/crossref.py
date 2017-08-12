@@ -3,7 +3,6 @@ import requests
 from builtins import input
 import difflib
 from doitobib.crossref import get_bib_from_doi
-import pdb
 bare_url = "http://api.crossref.org/"
 
 
