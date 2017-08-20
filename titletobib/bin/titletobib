@@ -19,11 +19,14 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description=textwrap.dedent('''\
         Convert a list of titles in a bibfile.
+        You also can convert a simple title, like:
+        $ titletobib  On boundary Dirac Equations
         -----------------------------------------------------
+
             @author: Bruno Messias
             @email: messias.physics@gmail.com
-            @telegram: @bruno_messias
-            @github: https://github.com/devmessias/titletobib
+            @telegram: @brunomessias
+            @github: https://github.com/bibcure/titletobib
         ''')
     )
 
