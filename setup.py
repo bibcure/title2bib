@@ -1,12 +1,12 @@
 from setuptools import setup, find_packages
 
-readme = open('README.md','r')
+readme = open('README','r')
 README_TEXT = readme.read()
 readme.close()
 
 setup(
     name="titletobib",
-    version="0.2.3",
+    version="0.2.4",
     packages = find_packages(exclude=["build",]),
     scripts=["titletobib/bin/titletobib"],
     long_description = README_TEXT,
@@ -16,7 +16,7 @@ setup(
     description="Generate a bibtex given a title",
     author="Bruno Messias",
     author_email="messias.physics@gmail.com",
-    download_url="https://github.com/bibcure/titletobib/archive/0.2.3.tar.gz",
+    download_url="https://github.com/bibcure/titletobib/archive/0.2.4.tar.gz",
     keywords=["bibtex", "science","scientific-journals"],
 
     classifiers=[
