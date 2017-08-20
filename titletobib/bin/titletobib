@@ -39,7 +39,15 @@ def main():
         "--output", "-o",
         help="bibtex output file")
 
+    parser.add_argument("--first",
+                        dest="first",
+                        action="store_true",
+                        help="get first founded item"
+                        )
+    parser.set_defaults(first=False)
+
     args = parser.parse_known_args()
+
     inlineTitle = len(args[1]) > 0
     if inlineTitle:
         titles = [" ".join(args[1])]
@@ -48,7 +56,7 @@ def main():
         titles = [title for title in titles.split("\n") if title != ""]
     bibs = []
     if inlineTitle:
-        get_first = False
+        get_first = args[0].first
     else:
         get_first = True if input("Automatic mode?y(yes)|n(no)") == "y" else False
     for title in titles:
