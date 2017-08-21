@@ -2,7 +2,7 @@
 from __future__ import print_function
 import argparse
 import textwrap
-from titletobib.crossref import get_bib_from_title
+from title2bib.crossref import get_bib_from_title
 
 
 def save_output_bibs(bibs, output_file):
@@ -13,22 +13,22 @@ def save_output_bibs(bibs, output_file):
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="titletobib",
+        prog="title2bib",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         description=textwrap.dedent('''\
         Convert a list of titles in a bibfile.
         You also can convert a simple title, like:
-        $ titletobib  On boundary Dirac Equations
+        $ title2bib  On boundary Dirac Equations
         or use the following command to get the first item and append
         in your bib file
-        $ titletobib  On boundary Dirac Equations --first >> refs.bib
+        $ title2bib  On boundary Dirac Equations --first >> refs.bib
 
         -----------------------------------------------------
 
             @author: Bruno Messias
             @email: messias.physics@gmail.com
             @telegram: @brunomessias
-            @github: https://github.com/bibcure/titletobib
+            @github: https://github.com/bibcure/title2bib
         ''')
     )
 

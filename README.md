@@ -1,9 +1,9 @@
 ## Description
-titletobib is a module of [bibcure](https://github.com/bibcure/bibcure)
+title2bib is a module of [bibcure](https://github.com/bibcure/bibcure)
 ## Install
 
 ```
-$ sudo pip install titletobib
+$ sudo pip install title2bib
 ```
 or if you want the full version
 
@@ -32,7 +32,7 @@ Given a DOI number...
 internet connection)
 
 ```
-$ titletobib An useful paper
+$ title2bib An useful paper
 ```
 Given a title...
 * search papers related and return a bib for the selected paper(requires

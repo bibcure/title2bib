@@ -2,7 +2,7 @@ from __future__ import print_function
 import requests
 from builtins import input
 import difflib
-from doitobib.crossref import get_bib_from_doi
+from doi2bib.crossref import get_bib_from_doi
 from arxivcheck.arxiv import get_arxiv_info, generate_bib_from_arxiv
 bare_url = "http://api.crossref.org/"
 
