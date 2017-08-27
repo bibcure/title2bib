@@ -17,21 +17,36 @@ $ sudo pip install bibcure
 
 ## Features and how to use
 
+
+Given a title...
+
+```
+$ title2bib An useful paper
+```
+
+Given a file of titles or ids
+
+```
+$ title2bib -i  titles.txt -o refs.bib
+```
+
+* search papers related and return the bibs
+
+
+### bibcure
+
 ```
 $ bibcure -i input.bib -o output.bib
 ```
 
 Given a bib file...
 
-* check sure the Arxiv items have been published, then update them(requires
-internet connection)
+* check sure the Arxiv items have been published, then update them
 
-* complete all fields(url, journal, etc) of all bib items using DOI number(requires
-internet connection)
+* complete all fields(url, journal, etc) of all bib items using DOI number
 
 * find and create DOI number associated with each bib item which has not
-DOI field(requires
-internet connection)
+DOI field
 
 * abbreviate jorunals names
 
@@ -41,16 +56,9 @@ $ doitobib 10.1038/s41524-017-0032-0
 
 Given a DOI number...
 
-* get bib item given a doi(requires
-internet connection)
+* get bib item given a doi
 
-```
-$ title2bib An useful paper
-```
 
-Given a title...
-* search papers related and return a bib for the selected paper(requires
-internet connection)
 
 ```
 $ arxivcheck 1601.02785
@@ -58,4 +66,4 @@ $ arxivcheck 1601.02785
 
 Given a arxiv id...
 
-* given an arixiv id, check if has been published, and then returns the updated bib (requires internet connection)
+* given an arixiv id, check if has been published, and then returns the updated bib
