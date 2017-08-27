@@ -1,8 +1,10 @@
-from __future__ import print_function
+
+from __future__ import unicode_literals, print_function, absolute_import
 import requests
 from builtins import input
 import difflib
 from doi2bib.crossref import get_bib_from_doi
+from unidecode import unidecode
 from arxivcheck.arxiv import get_arxiv_info, generate_bib_from_arxiv
 bare_url = "http://api.crossref.org/"
 
@@ -16,10 +18,10 @@ def find_cross_info(params):
 def ask_which_is(title, items):
     found = False
     result = {}
-    question = "\t It is >>'{}' article?y(yes)|n(no)|q(quit)"
+    question = "\t It is >>'{}' article?\n y(yes)|n(no)|q(quit)"
     for item in items:
         w = input(question.format(
-            item["title"], title))
+            unidecode(item["title"]), unidecode(title)))
         if w == "y":
             found = True
             result = item
@@ -59,7 +61,7 @@ def get_from_title(title, get_first=False):
             found = True
             item = items[0]
         else:
-            print("\nOriginal title: "+title+"\n")
+            print("\nOriginal title: "+unidecode(title)+"\n")
             found, item = ask_which_is(title, items)
     return found, item
 

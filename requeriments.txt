@@ -1,5 +1,5 @@
 bibtexparser
 future
 doi2bib
+unidecode
 arxivcheck
-
