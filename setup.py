@@ -10,7 +10,7 @@ setup(
     packages = find_packages(exclude=["build",]),
     scripts=["title2bib/bin/title2bib"],
     long_description = README_TEXT,
-    install_requires=["requests", "future", "doi2bib","arxivcheck"],
+    install_requires=["requests", "future", "doi2bib","arxivcheck", "unidecode"],
     include_package_data=True,
     license="AGPLv3",
     description="Generate a bibtex given a title",
