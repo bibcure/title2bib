@@ -1,12 +1,18 @@
 #!/usr/bib/env python
-from __future__ import unicode_literals, print_function, absolute_import
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+from __future__ import print_function, absolute_import
 import argparse
 import textwrap
 from title2bib.crossref import get_bib_from_title
+import sys
+import io
+from unidecode import unidecode
+pyversion = sys.version_info[0]
 
 
 def save_output_bibs(bibs, output_file):
-    with open(output_file, 'w') as bibfile:
+    with io.open(output_file, 'w', encoding = "utf-8") as bibfile:
         for bib in bibs:
             bibfile.write("{}\n".format(bib))
 
@@ -34,7 +40,6 @@ def main():
 
     parser.add_argument(
         "--input", "-i",
-        type=argparse.FileType("r"),
         help="input file"
     )
     parser.add_argument(
@@ -51,16 +56,17 @@ def main():
     parser.set_defaults(first=False)
 
     args = parser.parse_known_args()
-
+    get_first = args[0].first
     inlineTitle = len(args[1]) > 0
     if inlineTitle:
-        titles = [" ".join(args[1])]
+        titles = [" ".join([c if pyversion == 3 else c.decode(sys.stdout.encoding) for c in args[1]])]
     else:
-        titles = args[0].input.read()
-        titles = [title for title in titles.split("\n") if title != ""]
+        titles = args[0].input
+        with io.open(titles, "r", encoding = "utf-8") as inputfile:
+            titles = inputfile.read()
+        titles = [t  for t in titles.split("\n") if t != ""]
     bibs = []
-    if inlineTitle:
-        get_first = args[0].first
+
     for title in titles:
         found, bib = get_bib_from_title(title, get_first)
         if found:
