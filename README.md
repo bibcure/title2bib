@@ -6,13 +6,13 @@ title2bib is a module of [bibcure](https://github.com/bibcure/bibcure)and [scihu
 ## Install
 
 ```
-$ sudo pip install title2bib
+$ sudo python /usr/bin/pip install title2bib
 ```
 
 or if you want the full version
 
 ```
-$ sudo pip install bibcure
+$ sudo python /usr/bin/pip install bibcure
 ```
 
 ## Features and how to use
