@@ -45,24 +45,38 @@ def sort_items_by_title(items, title):
 
 def get_from_title(title, get_first=False):
     found = False
-    params = {"query.title": title, "rows": 10}
+    params = {"query.title": title, "rows": 20}
     r = find_cross_info(params)
     items = r.json()["message"]["items"]
     for i, item in enumerate(items):
-        items[i]["title"] = item["title"][0].encode("ascii", "ignore")
-        items[i]["is_crossref"] = True
-    found_arxiv,  arxiv_items = get_arxiv_info(title, field="ti")
-    for arxiv_item in arxiv_items:
-        arxiv_item["is_crossref"] = False
-        items.append(arxiv_item)
+        title_item = item["title"][0]
+        try:
+            title_item = title_item.decode("utf-8")
+        except:
+            pass
+
+        item["title"] = title_item
+        item["is_crossref"] = True
+
+        if title_item == title:
+            return True, item
+        
+        items[i] = item
+
+    if len(items) == 0:
+        found_arxiv,  arxiv_items = get_arxiv_info(title, field="ti")
+        for arxiv_item in arxiv_items:
+            arxiv_item["is_crossref"] = False
+            items.append(arxiv_item)
+
     if r.status_code == 200 and len(items) > 0:
         items = sort_items_by_title(items, title)
         if get_first:
             found = True
             item = items[0]
         else:
-            print("\nOriginal title: "+unidecode(title)+"\n")
             found, item = ask_which_is(title, items)
+
     return found, item
 
 

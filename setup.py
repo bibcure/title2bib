@@ -6,7 +6,7 @@ readme.close()
 
 setup(
     name="title2bib",
-    version="0.3.0",
+    version="0.4.0",
     packages = find_packages(exclude=["build",]),
     scripts=["title2bib/bin/title2bib"],
     long_description = README_TEXT,
@@ -16,7 +16,7 @@ setup(
     description="Generate a bibtex given a title",
     author="Bruno Messias",
     author_email="messias.physics@gmail.com",
-    download_url="https://github.com/bibcure/title2bib/archive/0.3.0.tar.gz",
+    download_url="https://github.com/bibcure/title2bib/archive/0.4.0.tar.gz",
     keywords=["bibtex", "science","scientific-journals", "crosref"],
 
     classifiers=[
