@@ -45,7 +45,7 @@ def sort_items_by_title(items, title):
 
 def get_from_title(title, get_first=False):
     found = False
-    params = {"query.title": title, "rows": 20}
+    params = {"query.bibliographic": title, "rows": 20}
     r = find_cross_info(params)
     items = r.json()["message"]["items"]
     for i, item in enumerate(items):
